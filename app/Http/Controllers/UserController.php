@@ -7,18 +7,31 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+
 
 class UserController extends Controller
 {
     public function index()
     {
-        $data = User::paginate(10);
+        $data = User::where('is_admin', 1)->paginate(10);
 
         return view('admin.page.user',[
             'name'  => "User Management",
             'title' => 'Admin User Management',
             'data'  => $data,
+        ]);
+    }
+
+    public function pelanggan()
+    {
+        $data = User::where('is_admin', 0)->paginate(10);
+
+        return view('admin.page.pelanggan', [
+            'name'  => 'User Pelanggan',
+            'title' => 'Data Pelanggan',
+            'data'  => $data
         ]);
     }
 
@@ -49,7 +62,7 @@ class UserController extends Controller
         if ($request->hasFile('foto')) {
             $photo = $request->file('foto');
             $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/user'), $filename);
+            $photo->storeAs('user', $filename, 'public');
             $data->foto = $filename;
         } else {
             $data->foto = 'default.png'; // siapkan default.png di folder public/storage/product
@@ -79,11 +92,10 @@ class UserController extends Controller
         $data = User::findOrFail($id);
 
         // Handle upload foto
-        if ($request->file('foto')) {
+        if ($request->hasFile('foto')) {
             $photo = $request->file('foto');
             $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/user'), $filename);
-            // $data->foto = $filename;
+            $photo->storeAs('user', $filename, 'public');
         } else {
             $filename = $data->foto;
         }
@@ -145,14 +157,13 @@ class UserController extends Controller
 
         // dd($request);die;
 
-        if ($request->hasFile('foto') == "") {
-            $filename = "default.png";
-            $data->foto = $filename;
-        } else {
+        if ($request->hasFile('foto')) {
             $photo = $request->file('foto');
             $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/user'), $filename);
+            $photo->storeAs('user', $filename, 'public');
             $data->foto = $filename;
+        } else {
+            $data->foto = 'default.png';
         }
         $data->save();
         Alert::toast('Data berhasil disimpan', 'success');
@@ -167,6 +178,18 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
+        $user = User::where('email', $request->email)->where('is_admin', 0)->first();
+
+        if (!$user) {
+            Alert::toast('Akun pelanggan tidak ditemukan', 'error');
+            return back()->withInput();
+        }
+
+        if ($user->is_active == 0) {
+            Alert::toast('Akun belum aktif', 'error');
+            return back()->withInput();
+        }
+
          // Data login
         $dataLogin = [
             'email' => $request->email,
@@ -174,7 +197,7 @@ class UserController extends Controller
         ];
 
         // Ambil user berdasarkan email
-        $user = User::where('email', $request->email)->first();
+        // $user = User::where('email', $request->email)->first();
 
         // Jika email tidak ditemukan
         if (!$user) {
@@ -189,7 +212,7 @@ class UserController extends Controller
         }
 
         // PROSES LOGIN
-        if (Auth::attempt($dataLogin)) {
+        if (Auth::guard('web')->attempt($dataLogin)) {
             $request->session()->regenerate();
 
             Alert::toast('Login berhasil', 'success');
@@ -197,6 +220,7 @@ class UserController extends Controller
             // Redirect ke HOME pelanggan
             return redirect()->route('home');
         }
+        
 
         // Jika password salah
         Alert::toast('Email atau Password salah', 'error');

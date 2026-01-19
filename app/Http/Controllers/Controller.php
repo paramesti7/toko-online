@@ -116,7 +116,7 @@ class Controller extends BaseController
         }
 
         $code = transaksi::count();
-        $codeTransaksi = date('Ymd') . $code + 1;
+        $codeTransaksi = date('Ymd') . ($code + 1);
         $detailBelanja = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->sum('price');
         $jumlahBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->count('id_barang');
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->sum('qty');
@@ -219,6 +219,7 @@ class Controller extends BaseController
         $dbTransaksi->alamat            = $data['alamatPenerima'];
         $dbTransaksi->no_tlp            = $data['tlp'];
         $dbTransaksi->ekspedisi         = $data['ekspedisi'];
+        $dbTransaksi->user_id            = Auth::id();
         
         $dbTransaksi->save();
 
@@ -246,14 +247,16 @@ class Controller extends BaseController
     {
         if (!Auth::check()) {
             $countKeranjang = 0;
+            $all_trx = collect();
         } else {
             $countKeranjang = tblCart::where([
                 'idUser' => Auth::id(),
                 'status' => 0
             ])->count();
+
+            $all_trx = transaksi::where('user_id', Auth::id())->get();
         }
         
-        $all_trx = transaksi::all();
         return view('pelanggan.page.keranjang',[
             'name'  => 'Payment',
             'title' => 'Payment Process',

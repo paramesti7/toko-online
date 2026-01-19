@@ -8,7 +8,7 @@
                     <span>Tambah Product</span>
                 </i>
             </button>
-            <input type="text" wire:model="search" class="form-control w-25" placeholder="search...">
+            <input type="text" class="form-control w-25" placeholder="search...">
         </div>
         <div class="card-body">
             <table class="table table-responsive table-striped">
@@ -45,11 +45,10 @@
                                 <td>{{ $x->harga }}</td>
                                 <td>{{ $x->quantity }}</td>
                                 <td>
-                                    <input type="hidden" id="sku" value="{{ $x->sku }}">
                                     <button class="btn btn-info editModal" data-id="{{ $x->id }}">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-danger deleteData" data-id="{{ $x->id }}">
+                                    <button class="btn btn-danger deleteData" data-id="{{ $x->id }}" data-sku="{{ $x->sku }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -104,8 +103,9 @@
 
         $('.deleteData').click(function(e) {
             e.preventDefault();
+
             var id = $(this).data('id');
-            var sku = $('#sku').val();
+            var sku = $(this).data('sku');
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",

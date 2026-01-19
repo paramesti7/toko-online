@@ -7,6 +7,18 @@
             </div>
             <form action="{{route('addData')}}" enctype="multipart/form-data" method="POST">
                 @csrf
+
+                {{-- ERROR VALIDATION --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger mx-3 mt-2">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="modal-body">
                     <div class="mb-3 row">
                         <label for="SKU" class="col-sm-5 col-form-label">SKU</label>
@@ -65,7 +77,6 @@
                     <div class="mb-3 row">
                         <label for="foto" class="col-sm-5 col-form-label">Foto Product</label>
                         <div class="col-sm-7">
-                            <input type="hidden" name="foto">
                             <img class="mb-2 preview" style="width: 100px">
                             <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="inputFoto" name="foto" onchange="previewImg()">
                         </div>
@@ -96,3 +107,11 @@
         }
     }
 </script>
+
+@if ($errors->any())
+<script>
+    $(document).ready(function () {
+        $('#addModal').modal('show');
+    });
+</script>
+@endif

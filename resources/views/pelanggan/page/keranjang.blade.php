@@ -33,7 +33,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route("keranjangBayar", ['id' => $item->id])}}" class="btn btn-success">Bayar</a>
+                                    @if ($item->status === 'Unpaid')
+                                        <a href="{{ route('keranjangBayar', ['id' => $item->id]) }}"
+                                        class="btn btn-success">Bayar</a>
+                                    @else
+                                        <span class="text-muted">Selesai</span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

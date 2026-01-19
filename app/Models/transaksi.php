@@ -11,6 +11,7 @@ class transaksi extends Model
     protected $table = 'transaksis';
     public $timestamps = true;
     protected $fillable = [
+        'idUser',
         'code_transaksi',
         'total_qty',
         'total_harga',
@@ -20,5 +21,11 @@ class transaksi extends Model
         'ekspedisi',
         'status',
     ];
-    protected $hidden;
+
+    protected $hidden = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser');
+    }
 }

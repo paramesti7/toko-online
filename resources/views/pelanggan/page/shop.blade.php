@@ -49,7 +49,7 @@
             </div>
         </div> --}}
         {{-- sunah end --}}
-        <div id="productList" class="d-flex flex-wrap gap-4 mb-5" id="filterResult">
+        <div id="productList" class="d-flex flex-wrap gap-5 mb-5" id="filterResult">
             @if ($data->isEmpty())
             <h1>Belum ada product...!</h1>
             @else

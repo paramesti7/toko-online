@@ -47,14 +47,26 @@
                     </div>
                 </a>
             </li>
-            <li class="navbar-item">
-                <a href="logout" class="">
+            <li class="navbar-item rounded {{Request::path() === 'admin/pelanggan' ? "bg-info" : ""}}">
+                <a href="{{ route('admin.pelanggan') }}" class="">
                     <div class="d-flex gap-3">
                         <span class="material-icons">
-                        logout</span>
-                        <p class="m-0 p-0">Logout</p>
+                        people_alt</span>
+                        <p class="m-0 p-0">User Pelanggan</p>
                     </div>
                 </a>
+            </li>
+            <li class="navbar-item rounded {{Request::path() === 'admin/logout' ? "bg-info" : ""}}">
+                <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-link text-decoration-none p-0 m-0 text-white">
+                        <div class="d-flex gap-3 align-items-center">
+                            <span class="material-icons">
+                            logout</span>
+                            <p class="m-0 p-0">Logout</p>
+                        </div>
+                    </button>
+                </form>
             </li>
         </ul>
     </div>

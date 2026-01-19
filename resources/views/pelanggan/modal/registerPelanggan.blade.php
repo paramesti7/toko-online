@@ -63,9 +63,9 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-success col-sm-12">Register</button>
-                    </p>
-                    <button type="button" class="btn btn-danger col-sm-12"data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success col-sm-12 mt-2">Register</button>
+
+                    <button type="button" class="btn btn-danger col-sm-12 mt-2"data-bs-dismiss="modal">Close</button>
 
                 </form>
             </div>

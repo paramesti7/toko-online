@@ -61,7 +61,7 @@ class ProductController extends Controller
         if ($request->hasFile('foto')) {
             $photo = $request->file('foto');
             $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/product'), $filename);
+            $photo->storeAs('product', $filename, 'public');
             $data->foto = $filename;
         } else {
             $data->foto = 'default.png'; // siapkan default.png di folder public/storage/product
