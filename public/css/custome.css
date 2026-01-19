@@ -1,0 +1,101 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* background-color: rgb(197, 197, 197); */
+}
+main{
+    background-color: rgb(224, 224, 224, 0.744);
+    min-height: 100vh;
+    overflow: hidden;
+}
+/* Style Header */
+/* .icon-nav{
+    position: relative;
+    color: #ffffff8c;
+}
+.icon-nav:hover{
+    color: white;
+} */
+/* sunah */
+.circle{
+    position: absolute;
+    top: -1px;
+    right: -5px;
+    border-radius: 50%;
+    background-color: rgba(249, 32, 32, 0.86);
+    color:  white;
+    text-align: center;
+    font-size: 12px;
+    padding: 2px 9px;
+}
+.notif{
+    position: relative;
+    display: inline-block;
+}
+.fa-bag-shopping{
+    font-size: 24px;
+    color: rgba(249, 249, 249, 0.686);
+}
+.fa-bag-shopping:hover{
+    color: rgba(255, 255, 255, 0.867);
+}
+
+section{
+    min-height: 80vh;
+}
+
+/* Style Footer */
+footer{
+    position: static;
+    bottom: 0;
+    background-color: #213555;
+    color: white;
+}
+
+
+/* sidebar */
+.sidebar{
+    position: fixed;
+    width: 250px;
+    height: 97vh;
+}
+.sidebar a{
+    text-decoration: none;
+    color: white;
+}
+.sidebar li{
+    list-style: none;
+    padding: 10px 5px;
+}
+.sidebar li::hover{
+    background-color: rgb(217, 217, 217, 0.518);
+    border-radius: 10px;
+    margin: 0;
+}
+.sidebar h5{
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    text-align: center;
+}
+
+.sosmed a i
+{
+    color: white;
+    transition: 0.3s;
+}
+
+.sosmed a i:hover {
+    color: #ddd; /* putih ke abu muda */
+}
+
+/* deskripsi produk */
+.product-name {
+    color: #000;
+}
+
+.product-name:hover {
+    color: #000;
+}
