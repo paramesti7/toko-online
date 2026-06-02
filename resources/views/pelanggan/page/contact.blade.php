@@ -9,14 +9,12 @@
             <h4 class="mt-3">Toko Amalia menyediakan berbagai macam oleh-oleh khas daerah dengan kualitas terbaik dan harga terjangkau</h4>
             <hr>
             <div class="content-text" style="font-size: 20px">
-                <ul class="list-unstyled">
+                <ul class="list-unstyled d-flex gap-3">
                     <li>
-                        <p>
-                            Alamat : Jl. Solo-Jogja No.127
-                        </p>
+                        <i class="fas fa-map"> : Jl. Solo-Jogja No.127</i>
                     </li>
                     <li>
-                        <p>No Tlp : 08123456789</p>
+                        <i class="fas fa-phone"> : 08123456789</i>
                     </li>
                 </ul>
             </div>

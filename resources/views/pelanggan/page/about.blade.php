@@ -12,6 +12,11 @@
 
             <ol style="font-size: 18px; line-height: 1.8;">
                 <li>
+                    <strong>Login</strong><br>
+                    Jika belum punya akun silahkan <em>Register</em>.
+                </li>
+
+                <li>
                     <strong>Pilih Produk</strong><br>
                     Pilih produk yang Anda inginkan pada halaman <em>Shop</em>.
                 </li>
@@ -43,7 +48,7 @@
             </ol>
 
             <p class="mt-4 text-center fw-semibold">
-                Terima kasih telah berbelanja di <span class="text-primary">Toko Amaliap</span> 🙏
+                Terima kasih telah berbelanja di <span class="text-primary">Toko Amalia</span> 🙏
             </p>
         </div>
     </div>

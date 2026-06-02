@@ -183,11 +183,11 @@ class Controller extends BaseController
                 'status'       => 0
             ]);
 
-            tblCart::where([
-                'id_barang' => $id,
-                'idUser'    => Auth::id(),
-                'status'    => 0
-            ])->update(['status' => 1]);
+            
+            tblCart::where('id_barang', $id)
+                ->where('idUser', (string) Auth::id())
+                ->where('status', 0)
+                ->update(['status' => 1]);
         }
 
         Alert::success('Checkout Berhasil', 'Silakan lanjut ke pembayaran');
@@ -212,6 +212,7 @@ class Controller extends BaseController
         $dbTransaksi = new transaksi();
         // dd($data);die;
 
+        $dbTransaksi->idUser            = Auth::id();
         $dbTransaksi->code_transaksi    = $data['code'];
         $dbTransaksi->total_qty         = $data['totalQty'];
         $dbTransaksi->total_harga       = $data['dibayarkan'];
@@ -219,7 +220,7 @@ class Controller extends BaseController
         $dbTransaksi->alamat            = $data['alamatPenerima'];
         $dbTransaksi->no_tlp            = $data['tlp'];
         $dbTransaksi->ekspedisi         = $data['ekspedisi'];
-        $dbTransaksi->user_id            = Auth::id();
+        // $dbTransaksi->user_id            = Auth::id();
         
         $dbTransaksi->save();
 
@@ -247,16 +248,16 @@ class Controller extends BaseController
     {
         if (!Auth::check()) {
             $countKeranjang = 0;
-            $all_trx = collect();
+            $all_trx = collect(); // kosong jika belum login
         } else {
             $countKeranjang = tblCart::where([
                 'idUser' => Auth::id(),
                 'status' => 0
             ])->count();
 
-            $all_trx = transaksi::where('user_id', Auth::id())->get();
+            $all_trx = transaksi::where('idUser', Auth::id())->get();
         }
-        
+        // $all_trx = transaksi::all();
         return view('pelanggan.page.keranjang',[
             'name'  => 'Payment',
             'title' => 'Payment Process',
@@ -266,40 +267,6 @@ class Controller extends BaseController
     }
 
     // public function bayar($id)
-    // {
-    //     $find_data = transaksi::find($id);
-    //     $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
-    //     \Midtrans\Config::$serverKey = config('midtrans.server_key');
-    //     // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-    //     \Midtrans\Config::$isProduction = false;
-    //     // Set sanitization on (default)
-    //     \Midtrans\Config::$isSanitized = true;
-    //     // Set 3DS transaction for credit card to true
-    //     \Midtrans\Config::$is3ds = true;
-
-    //     $params = array(
-    //         'transaction_details' => array(
-    //             'order_id' => $find_data->code_transaksi,
-    //             'gross_amount' => $find_data->total_harga,
-    //         ),
-    //         'customer_details' => array(
-    //             'first_name' => 'Mr',
-    //             'last_name' => $find_data->nama_customer,
-    //             // 'email' => 'budi.pra@example.com',
-    //             'phone' => $find_data->no_tlp,
-    //         ),
-    //     );
-
-    //     $snapToken = \Midtrans\Snap::getSnapToken($params);
-    //     // dd($snapToken);die;
-    //     return view('pelanggan.page.detailTransaksi', [
-    //         'name' => 'Detail Transaksi',
-    //         'title' => 'Detail Transaksi',
-    //         'count' => $countKeranjang,
-    //         'token' => $snapToken,
-    //         'data' => $find_data,
-    //     ]);
-    // }
 
     public function admin()
     {
@@ -421,7 +388,7 @@ class Controller extends BaseController
 
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::logout();
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
