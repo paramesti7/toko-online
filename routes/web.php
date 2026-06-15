@@ -54,8 +54,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/transaksi', [TransaksiController::class, 'destroy'])->name('transaksi.delete');
 
     Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
-    Route::POST('/checkout/proses', [Controller::class, 'prosesCheckout'])->name('checkoutProduct');
 
+    // Raja Ongkir
+    //route to get cities based on province ID
+    Route::get('/cities/{provinceId}', [Controller::class, 'getCities']);
+    //route to get districts based on city ID
+    Route::get('/districts/{cityId}', [Controller::class, 'getDistricts']);
+    //route to post shipping cost
+    Route::post('/check-ongkir', [Controller::class, 'checkOngkir']);
+
+    Route::POST('/checkout/proses', [Controller::class, 'prosesCheckout'])->name('checkoutProduct');
     Route::POST('/checkout/prosesPembayaran', [Controller::class, 'prosesPembayaran'])->name('checkoutBayar');
 
     Route::get('/checkOut', [Controller::class, 'keranjang'])->name('keranjang');

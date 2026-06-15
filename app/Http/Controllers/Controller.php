@@ -13,6 +13,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -115,11 +116,27 @@ class Controller extends BaseController
             ])->count();
         }
 
+        // mengambil data provinsi dari API Raja Ongkir
+        $response = Http::withHeaders([
+
+            // headers yang diperlukan untuk API Raja Ongkir
+            'Accept'=> 'application/json',
+            'key'   => config('rajaongkir.api_key'),
+
+        ])-> get('https://rajaongkir.komerce.id/api/v1/destination/province');
+
+        $provinces = [];
+
+        if ($response->successful()) {
+            $provinces = $response->json()['data'] ?? [];
+        }
+
         $code = transaksi::count();
         $codeTransaksi = date('Ymd') . ($code + 1);
         $detailBelanja = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->sum('price');
         $jumlahBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->count('id_barang');
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->sum('qty');
+
         return view('pelanggan.page.checkOut',[
             'title'         => 'Check Out',
             'count'         => $countKeranjang,
@@ -127,9 +144,90 @@ class Controller extends BaseController
             'jumlahbarang'  => $jumlahBarang,
             'qtyOrder'      => $qtyBarang,
             'codeTransaksi' => $codeTransaksi,
+            'provinces'     => $provinces,
         ]);
     }
-    
+
+    /**
+     * Mengambil data kota berdasarkan ID provinsi
+     *
+     * @param int $provinceId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCities($provinceId)
+    {
+        // mengambil data kota bedasarkan ID provinsi dari API Raja Ongkir
+        $response = Http::withHeaders([
+
+            // headers yang diperlukan untuk API Raja Ongkir
+            'Accept' => 'application/json',
+            'key'    => config('rajaongkir.api_key'),
+
+        ])->get("https://rajaongkir.komerce.id/api/v1/destination/city/{$provinceId}");
+
+        if ($response->successful()) {
+
+            // mengambil data kota dari respons JSON
+            // jika 'data' tidak ada, inisialisasi dengan array kosong
+            return response()->json($response->json()['data'] ?? []);
+        }
+    }
+
+    /**
+     * Mengambil data kecamatan berdasarkan ID kota
+     *
+     * @param int $cityId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getDistricts($cityId)
+    {
+        // Mengambil data kecamatan berdasarkan ID kota dari API Raja Ongkir
+        $response = Http::withHeaders([
+
+            //headers yang diperlukan untuk API Raja Ongkir
+            'Accept' => 'application/json',
+            'key' => config('rajaongkir.api_key'),
+
+        ])->get("https://rajaongkir.komerce.id/api/v1/destination/district/{$cityId}");
+
+        if ($response->successful()) {
+
+            // Mengambil data kecamatan dari respons JSON
+            // Jika 'data' tidak ada, inisialisasi dengan array kosong
+            return response()->json($response->json()['data'] ?? []);
+        }
+    }
+
+    /**
+     * Menghitung ongkos kirim berdasarkan data yang diberikan
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function checkOngkir(Request $request)
+    {
+        $response = Http::asForm()->withHeaders([
+
+            //headers yang diperlukan untuk API Raja Ongkir
+            'Accept' => 'application/json',
+            'key'    => config('rajaongkir.api_key'),
+
+        ])->post('https://rajaongkir.komerce.id/api/v1/calculate/domestic-cost', [
+                'origin'      => 5317,
+                'destination' => $request->input('district_id'), // ID kecamatan tujuan
+                'weight'      => 1000, // Berat dalam gram
+                'courier'     => $request->input('courier'), // Kode kurir (jne, tiki, pos)
+        ]);
+
+        if ($response->successful()) {
+
+            // Mengambil data ongkos kirim dari respons JSON
+            // Jika 'data' tidak ada, inisialisasi dengan array kosong
+            return $response->json()['data'] ?? [];
+        }
+    }
+
     public function prosesCheckout(Request $request)
     {
         $request->validate([
@@ -202,6 +300,9 @@ class Controller extends BaseController
             'alamatPenerima'   => ['required'],
             'tlp'              => ['required', 'digits_between:10,15'],
             'ekspedisi'        => ['required'],
+            'province_id'      => ['required'],
+            'city_id'          => ['required'],
+            'district_id'      => ['required'],
         ], [
             'required' => 'Isi data lengkap terlebih dahulu',
             'namaPenerima.regex' => 'Nama penerima tidak boleh mengandung angka',
@@ -210,7 +311,6 @@ class Controller extends BaseController
 
         $data = $request->all();
         $dbTransaksi = new transaksi();
-        // dd($data);die;
 
         $dbTransaksi->idUser            = Auth::id();
         $dbTransaksi->code_transaksi    = $data['code'];
@@ -220,7 +320,9 @@ class Controller extends BaseController
         $dbTransaksi->alamat            = $data['alamatPenerima'];
         $dbTransaksi->no_tlp            = $data['tlp'];
         $dbTransaksi->ekspedisi         = $data['ekspedisi'];
-        // $dbTransaksi->user_id            = Auth::id();
+        $dbTransaksi->provinsi          = $data['province_id'];
+        $dbTransaksi->kota              = $data['city_id'];
+        $dbTransaksi->kecamatan         = $data['district_id'];
         
         $dbTransaksi->save();
 

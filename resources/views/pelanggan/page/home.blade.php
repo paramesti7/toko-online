@@ -36,7 +36,6 @@
                         <div class="d-flex flex-column gap-1">
                             <p class="m-0" style="font-size: 16px; font-weight:600;">
                             <span>Rp </span> {{ number_format($b->harga,0,',','.') }}</p>
-                            <p class="m-0 text-muted" style="font-size: 12px"><span style="color: red">*</span><i>Belum termasuk PPN:11%</i></p>
                         </div>
 
                         @if ($b->quantity > 0)
@@ -96,7 +95,6 @@
                     <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                         <div class="d-flex flex-column gap-1">
                             <p class="m-0" style="font-size: 16px; font-weight:600;"><span>Rp </span> {{ number_format($p->harga,0,',','.') }}</p>
-                            <p class="m-0 text-muted" style="font-size: 12px"><span style="color: red">*</span><i>Belum termasuk PPN:11%</i></p>
                         </div>
 
                         @if ($p->quantity > 0)

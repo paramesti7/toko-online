@@ -11,7 +11,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3 row">
-                        <label for="nik" class="col-sm-5 col-form-label">NIK</label>
+                        <label for="nik" class="col-sm-5 col-form-label">ID</label>
                         <div class="col-sm-7">
                             <input type="text" class="form-control-plaintext" id="nik" name="nik"
                                 value="{{ $data->nik }}" readonly>

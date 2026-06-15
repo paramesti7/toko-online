@@ -43,7 +43,7 @@
                     </span>
                     <h5 class="p-0 m-0" style="color: #FFC436">Penghasilan</h5>
                 </div>
-                <span class="fs-2 p-0 m-0">{{ number_format($dataPenghasilan / 1000) . ' K' }}</span>
+                <p class="fs-2 p-0 m-0"><span class="fs-2 p-0 m-0">Rp </span> {{ number_format($dataPenghasilan,0,',','.') }}</p>
             </div>
         </div>
     </div>

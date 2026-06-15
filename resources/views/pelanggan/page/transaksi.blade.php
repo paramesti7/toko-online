@@ -40,7 +40,6 @@
                                 Rp {{ number_format($x->product->harga,0,',','.') }}
                             </span>
                         </p>
-                        <p class="m-0 text-muted" style="font-size: 12px"><span style="color: red">*</span><i>Belum termasuk PPN:11%</i></p>
                         
                         {{-- QTY --}}
                         <div class="row mb-2">

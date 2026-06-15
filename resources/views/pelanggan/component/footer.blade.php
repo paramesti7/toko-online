@@ -11,12 +11,13 @@
         </div>
         <ul class="list-unstyled">
             <li>
-                <p>
-                    Alamat : Jl. Solo-Jogja No.127
-                </p>
+                <i class="fas fa-map-marker-alt text-white"></i>
+                JL. Solo - Jogja No.127
+                
             </li>
             <li>
-                <p>No Tlp : 08123456789</p>
+                <i class="fas fa-phone-alt text-white"></i>
+                08123456789
             </li>
         </ul>
     </div>

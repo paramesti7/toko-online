@@ -1,27 +1,43 @@
 @extends('pelanggan.layout.index')
 
 @section('content')
-    <div class="row mt-4 align-items-center">
-        <div class="col-md-6">
-            <div class=" m-3 card-header text-center">
-                <h2 class="mb-5">CONTACT US</h2>
+    <div class="container py-5">
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+                <img src="{{ asset('assets/images/toko.jpeg') }}"
+                    class="img-fluid contact-image"
+                    alt="Toko Amalia">
             </div>
-            <h4 class="mt-3">Toko Amalia menyediakan berbagai macam oleh-oleh khas daerah dengan kualitas terbaik dan harga terjangkau</h4>
-            <hr>
-            <div class="content-text" style="font-size: 20px">
-                <ul class="list-unstyled d-flex gap-3">
-                    <li>
-                        <i class="fas fa-map"> : Jl. Solo-Jogja No.127</i>
-                    </li>
-                    <li>
-                        <i class="fas fa-phone"> : 08123456789</i>
-                    </li>
-                </ul>
+
+            <div class="col-md-6">
+
+                <h1 class="fw-bold mb-4">
+                    Toko Amalia
+                </h1>
+
+                <p class="text-secondary fs-5 mb-4">
+                    Toko Amalia menyediakan berbagai macam oleh-oleh khas daerah
+                    dengan kualitas terbaik dan harga terjangkau.
+                </p>
+
+                <div class="shadow-sm p-3 rounded-4 mb-3 bg-white">
+                    <i class="fas fa-map-marker-alt text-danger"></i>
+                    JL. Solo - Jogja No.127
+                </div>
+
+                <div class="shadow-sm p-3 rounded-4 mb-4 bg-white">
+                    <i class="fas fa-phone-alt text-success"></i>
+                    08123456789
+                </div>
+
+                {{-- <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">
+                    Hubungi Sekarang
+                </a> --}}
             </div>
+
         </div>
-        <div class="col-md-6">
-            <img src="{{asset('assets/images/toko.jpeg')}}" style="width:100%;" alt="">
-        </div>
+
 
         {{-- sunah start --}}
         {{-- <div class="d-flex justify-content-lg-between mt-5">

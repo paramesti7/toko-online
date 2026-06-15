@@ -18,9 +18,9 @@
                         <th>Foto</th>
                         <th>Date In</th>
                         <th>SKU</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
+                        <th>Nama Produk</th>
+                        <th>Kategory</th>
+                        <th>Harga</th>
                         <th>Stock</th>
                         <th>#</th>
                     </tr>
@@ -45,12 +45,15 @@
                                 <td>{{ $x->harga }}</td>
                                 <td>{{ $x->quantity }}</td>
                                 <td>
-                                    <button class="btn btn-info editModal" data-id="{{ $x->id }}">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-danger deleteData" data-id="{{ $x->id }}" data-sku="{{ $x->sku }}">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-info editModal" data-id="{{ $x->id }}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        
+                                        <button class="btn btn-danger deleteData" data-id="{{ $x->id }}" data-sku="{{ $x->sku }}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
