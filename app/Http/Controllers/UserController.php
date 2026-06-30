@@ -50,10 +50,7 @@ class UserController extends Controller
         $data->name         = $request->nama;
         $data->email        = $request->email;
         $data->password     = bcrypt($request->password);
-        $data->alamat       = $request->alamat;
-        $data->tlp          = $request->tlp;
         $data->role         = $request->role;
-        $data->tglLahir     = $request->tglLahir;
         $data->is_active    = 1;
         $data->is_mamber    = 0;
         $data->is_admin     = 1;
@@ -105,9 +102,6 @@ class UserController extends Controller
             'nik'                   => $request->nik,
             'name'                  => $request->nama,
             'email'                 => $request->email,
-            'alamat'                => $request->alamat,
-            'tlp'                   => $request->tlp,
-            'tglLahir'              => $request->tglLahir,
             'role'                  => $request->role ?? $data->role,
             'foto'                  => $filename,
         ];
@@ -140,17 +134,12 @@ class UserController extends Controller
     {
         $data = new User;
         $nik  = "Member" . rand(000, 999);
+
         $data->nik          = $nik;
         $data->name         = $request->nama;
         $data->email        = $request->email;
         $data->password     = bcrypt($request->password);
-        $data->alamat = $request->alamat;
-        if ($request->filled('alamat2')) {
-            $data->alamat .= ' ' . $request->alamat2;
-        }
-        $data->tlp          = $request->tlp;
         $data->role         = 0;
-        $data->tglLahir     = $request->date;
         $data->is_active    = 1;
         $data->is_mamber    = 1;
         $data->is_admin     = 0;

@@ -12,7 +12,7 @@
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="email" name="email" value="" placeholder="Masukan Email Anda">
+                            <input type="text" class="form-control" id="email" name="email" value="" autocomplete="off" placeholder="Masukan Email Anda">
                         </div>
                     </div>
                     <div class="mb-5 row">

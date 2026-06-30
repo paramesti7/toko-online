@@ -13,7 +13,7 @@
                 <span class="fs-2 p-0 m-0">{{ $totalProduct }}</span>
             </div>
         </div>
-        <div class="card" style="width: 300px;">
+        {{-- <div class="card" style="width: 300px;">
             <div class="card-body">
                 <div class="d-flex gap-2 align-items-center justify-start">
                     <span class="material-icons p-1 rounded" style="font-size: 22px; color:#D80032; background-color:#F78CA2">
@@ -23,7 +23,7 @@
                 </div>
                 <span class="fs-2 p-0 m-0">{{ $sumStock }}</span>
             </div>
-        </div>
+        </div> --}}
         <div class="card" style="width: 300px;">
             <div class="card-body">
                 <div class="d-flex gap-2 align-items-center justify-start">
@@ -35,7 +35,7 @@
                 <span class="fs-2 p-0 m-0">{{ $dataTransaksi }}</span>
             </div>
         </div>
-        <div class="card" style="width: 300px;">
+        {{-- <div class="card" style="width: 300px;">
             <div class="card-body">
                 <div class="d-flex gap-2 align-items-center justify-start">
                     <span class="material-icons p-1 rounded" style="font-size: 22px; color:#FFC436; background-color:#F4F27E">
@@ -45,6 +45,6 @@
                 </div>
                 <p class="fs-2 p-0 m-0"><span class="fs-2 p-0 m-0">Rp </span> {{ number_format($dataPenghasilan,0,',','.') }}</p>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection

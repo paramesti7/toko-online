@@ -32,10 +32,8 @@
         <header class="w-full">
             @include('pelanggan.component.navbar')
         </header>
-        <section class="container">
-            <div>
-                @yield('content')
-            </div>
+        <section>
+            @yield('content')
         </section>
         {{-- Footer --}}
         <footer>

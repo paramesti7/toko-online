@@ -25,12 +25,7 @@ class UserRequest extends FormRequest
             'nama'          => 'required|string|max:255',
             'email'         => 'required|email',
             'password'      => 'required|min:3',
-            'alamat'        => 'required|string',
-            'alamat2'       => 'nullable|string',
-            'tlp'           => 'required',
             // 'role'          => 'required',
-            // // sunah
-            'date'      => 'required|date',
             'foto'      => 'nullable|image|mimes:jpg,png,jpeg'
         ];
     }

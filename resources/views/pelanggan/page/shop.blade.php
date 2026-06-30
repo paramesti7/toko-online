@@ -1,7 +1,7 @@
 @extends('pelanggan.layout.index')
 
 @section('content')
-    <div class="d-flex flex-row gap-2 mt-4">
+    <div class=" container d-flex flex-row gap-2 mt-4">
         {{-- sunah start --}}
         {{-- <div class="" style="width: 30%">
             <div class="card" style="width: 18rem;">
@@ -110,7 +110,8 @@
                 @endforeach
         </div>
     </div>
-    <div class="pagination d-flex flex-row justify-content-between mt-3">
+
+    <div class="container pagination d-flex flex-row justify-content-between mt-3">
         <div class="showData">
             Data ditampilkan {{$data->count()}} dari {{$data->total()}}
         </div>

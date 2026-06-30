@@ -17,9 +17,9 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="nameProduct" class="col-sm-5 col-form-label">Nama Product</label>
+                        <label for="nameProduct" class="col-sm-5 col-form-label">Nama Produk</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="nameProduct" name="nama" value="{{$data->nama_product}}">
+                            <input type="text" class="form-control" id="nameProduct" name="nama" value="{{$data->nama_product}}" autocomplete="off">
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -28,44 +28,20 @@
                             <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3">{{$data->deskripsi}}</textarea>
                         </div>
                     </div>
-                    {{-- sunah start --}}
                     <div class="mb-3 row">
-                        <label for="type" class="col-sm-5 col-form-label">Type Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="type" name="type">
-                                <option value="">Pilih Type</option>
-                                <option value="Oleh-Oleh" {{$data->type === 'Oleh-Oleh' ? 'selected' : '' }}>Oleh-Oleh</option>
-                                {{-- <option value="rengginang" {{$data->type === 'rengginang' ? 'selected' : '' }}>Rengginang</option>
-                                <option value="abon" {{$data->type === 'abon' ? 'selected' : '' }}>Abon</option> --}}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="katergori" class="col-sm-5 col-form-label">Katergori Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="katergori" name="kategori">
-                                <option value="">Pilih katergori</option>
-                                <option value="Makanan" {{$data->kategory === 'Makanan' ? 'selected' : '' }}>Makanan</option>
-                                <option value="Minuman" {{$data->kategory === 'Minuman' ? 'selected' : '' }}>Minuman</option>
-                                {{-- <option value="Dessert" {{$data->kategory === 'Dessert' ? 'selected' : '' }}>Dessert</option> --}}
-                            </select>
-                        </div>
-                    </div>
-                    {{-- sunah end --}}
-                    <div class="mb-3 row">
-                        <label for="harga" class="col-sm-5 col-form-label">Harga Product</label>
+                        <label for="harga" class="col-sm-5 col-form-label">Harga Produk</label>
                         <div class="col-sm-7">
                             <input type="number" class="form-control" id="harga" name="harga" value="{{$data->harga}}">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="quantity" class="col-sm-5 col-form-label">Qty Product</label>
+                        <label for="quantity" class="col-sm-5 col-form-label">Qty Produk</label>
                         <div class="col-sm-7">
                             <input type="number" class="form-control" id="quantity" name="quantity" value="{{$data->quantity}}">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="foto" class="col-sm-5 col-form-label">Foto Product</label>
+                        <label for="foto" class="col-sm-5 col-form-label">Foto Produk</label>
                         <div class="col-sm-7">
                             <input type="hidden" name="foto" value="{{$data->foto}}">
                             <img src="{{asset('storage/product/'.$data->foto)}}" class="mb-2 preview" style="width: 100px">

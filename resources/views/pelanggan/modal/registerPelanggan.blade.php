@@ -11,49 +11,24 @@
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-3 col-form-label">Nama <span style="color: red">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="nama" id="nama" value="" placeholder="Masukan nama Anda" required>
+                            <input type="text" class="form-control" name="nama" id="nama" value="" autocomplete="off" placeholder="Masukan nama Anda" oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '')" required autofocus>
                         </div>
                     </div>
+                    
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-3 col-form-label">Email <span style="color: red">*</span></label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" name="email" id="email" value="" placeholder="Masukan Email Anda" required>
+                            <input type="email" class="form-control" name="email" id="email" value="" autocomplete="off" placeholder="Masukan Email Anda" required>
                         </div>
                     </div>
+
                     <div class="mb-3 row">
                         <label for="password" class="col-sm-3 col-form-label">Password <span style="color: red">*</span></label>
                         <div class="col-sm-9">
                             <input type="password" class="form-control" name="password" id="password" placeholder="Masukan Password Anda" required>
                         </div>
                     </div>
-                    <div class="mb-3 row">
-                        <label for="alamat" class="col-sm-3 col-form-label">Alamat <span style="color: red">*</span></label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat Anda" required>
-                        </div>
-                    </div>
-                    {{-- sunah start1 --}}
-                    <div class="mb-3 row">
-                        <label for="alamat" class="col-sm-3 col-form-label">Alamat 2</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="alamat2" id="alamat2" placeholder="Masukan Alamat Anda">
-                        </div>
-                    </div>
-                    {{-- sunah end1 --}}
-                    <div class="mb-3 row">
-                        <label for="tlp" class="col-sm-3 col-form-label">Nomor Telpon <span style="color: red">*</span></label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Masukan Nomor Telpon Anda">
-                        </div>
-                    </div>
-                    {{-- sunah start 2 --}}
-                    <div class="mb-3 row">
-                        <label for="date" class="col-sm-3 col-form-label">Tanggal Lahir <span style="color: red">*</span></label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Masukan Tanggal Lahir Anda">
-                        </div>
-                    </div>
-                    {{-- sunah end 2 --}}
+                    
                     <div class="mb-3 row">
                         <label for="foto" class="col-sm-3 col-form-label">Foto Anda</label>
                         <div class="col-sm-9">

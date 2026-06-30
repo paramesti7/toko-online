@@ -4,7 +4,7 @@
     <div class="container py-5">
         <div class="row align-items-center">
 
-            <div class="col-md-6">
+            <div class="col-md-6 shadow-lg rounded overflow-hidden">
                 <img src="{{ asset('assets/images/toko.jpeg') }}"
                     class="img-fluid contact-image"
                     alt="Toko Amalia">
@@ -12,7 +12,7 @@
 
             <div class="col-md-6">
 
-                <h1 class="fw-bold mb-4">
+                <h1 class="fw-bold mb-4 text-center">
                     Toko Amalia
                 </h1>
 

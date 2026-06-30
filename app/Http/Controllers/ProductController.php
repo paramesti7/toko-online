@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
@@ -37,6 +40,24 @@ class ProductController extends Controller
         ]);
     }
 
+    public function exportPdf(Request $request)
+    {
+        $dateStart  = $request->dateStart;
+        $dateEnd    = $request->dateEnd;
+
+        $data = Product::whereBetween('created_at', [
+            $dateStart . ' 00:00:00',
+            $dateEnd . ' 23:59:59'
+        ])->get();
+
+        $tanggal = Carbon::now()->translatedFormat('d F Y');
+
+        $pdf = Pdf::loadView('admin.pdf.export-produk', [
+        'data' => $data, 'tanggal' => $tanggal]);
+        
+        return $pdf->stream('laporan-produk.pdf');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -46,16 +67,9 @@ class ProductController extends Controller
         $data->sku           = $request->sku;
         $data->nama_product  = $request->nama;
         $data->deskripsi     = $request->deskripsi;
-        // sunah start 1
-        $data->type          = $request->type;
-        $data->kategory      = $request->kategori;
-        // sunah end 1
         $data->harga         = $request->harga;
         $data->quantity      = $request->quantity;
         $data->quantity_out  = 0;
-        // sunah start 2
-        $data->discount      = 10 / 100;
-        // sunah end 2
         $data->is_active     = 1;
         
         if ($request->hasFile('foto')) {
@@ -115,12 +129,8 @@ class ProductController extends Controller
             'sku'            => $request->sku,
             'nama_product'   => $request->nama,
             'deskripsi'      => $request->deskripsi,
-            'type'           => $request->type,
-            'kategory'       => $request->kategori,
             'harga'          => $request->harga,
             'quantity'       => $request->quantity,
-            // sunah 2
-            'discount'       => 10 / 100,
             'is_active'      => 1,
             'foto'           => $filename,
         ];

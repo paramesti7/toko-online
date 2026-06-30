@@ -17,7 +17,7 @@
                     <div class="d-flex gap-3">
                         <span class="material-icons">
                         inventory</span>
-                        <p class="m-0 p-0">Product</p>
+                        <p class="m-0 p-0">Produk</p>
                     </div>
                 </a>
             </li>

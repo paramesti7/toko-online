@@ -5,7 +5,7 @@
         <div class="card-header bg-transparent d-flex justify-content-between">
             <button class="btn btn-info" id="addData">
                 <i class="fa fa-plus">
-                    <span>Tambah Product</span>
+                    <span>Tambah Produk</span>
                 </i>
             </button>
             <input type="text" class="form-control w-25" placeholder="search...">
@@ -19,7 +19,6 @@
                         <th>Date In</th>
                         <th>SKU</th>
                         <th>Nama Produk</th>
-                        <th>Kategory</th>
                         <th>Harga</th>
                         <th>Stock</th>
                         <th>#</th>
@@ -40,8 +39,6 @@
                                 <td>{{ $x->created_at }}</td>
                                 <td>{{ $x->sku }}</td>
                                 <td>{{ $x->nama_product }}</td>
-                                {{-- sunah --}}
-                                <td>{{ $x->type. ' ' .$x->kategory }}</td>
                                 <td>{{ $x->harga }}</td>
                                 <td>{{ $x->quantity }}</td>
                                 <td>

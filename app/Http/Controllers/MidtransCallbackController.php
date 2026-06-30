@@ -7,12 +7,13 @@ use App\Models\transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\modelDetailTransaksi;
 
 class MidtransCallbackController extends Controller
 {
     public function bayar($id)
     {
-        $find_data = transaksi::find($id);
+        $find_data = transaksi::findOrFail($id);
 
         if (!Auth::check()) {
             $countKeranjang = 0;
@@ -22,6 +23,11 @@ class MidtransCallbackController extends Controller
                 'status' => 0
             ])->count();
         }
+
+        // Ambil detail produk transaksi
+        $detailProduk = modelDetailTransaksi::with('product')
+            ->where('id_transaksi', $find_data->code_transaksi)
+            ->get();
 
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -47,11 +53,12 @@ class MidtransCallbackController extends Controller
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         // dd($snapToken);die;
         return view('pelanggan.page.detailTransaksi', [
-            'name' => 'Detail Transaksi',
-            'title' => 'Detail Transaksi',
-            'count' => $countKeranjang,
-            'token' => $snapToken,
-            'data' => $find_data,
+            'name'          => 'Detail Transaksi',
+            'title'         => 'Detail Transaksi',
+            'count'         => $countKeranjang,
+            'token'         => $snapToken,
+            'data'          => $find_data,
+            'detailProduk'  => $detailProduk,
         ]);
     }
 
@@ -134,6 +141,10 @@ class MidtransCallbackController extends Controller
                 'status' => 0
             ])->count();
         }
+
+        $detailProduk = modelDetailTransaksi::with('product')
+            ->where('id_transaksi', $find_data->code_transaksi)
+            ->get();
         
         return view('pelanggan.page.invoice',
         [
@@ -141,6 +152,7 @@ class MidtransCallbackController extends Controller
             'find_data'     => $find_data,
             // compact('find_data')
             'count'         => $countKeranjang,
+            'detailProduk'  => $detailProduk,
         ]);
     }
 }

@@ -19,7 +19,7 @@
                         <th>Foto</th>
                         <th>NIK</th>
                         <th>Join Date</th>
-                        <th>Nama Pengguna</th>
+                        <th>Nama</th>
                         {{-- Sunah 2 --}}
                         <th>Role</th>
                         <th>Status</th>

@@ -2,14 +2,93 @@
 
 @section('content')
     <div class="container mt-5">
-        <div class="card w-50">
+        <div class="card">
             <div class="card-header">
-                <h4>Total yang harus dibayar</h4>
+                <h4>Detail Pembayaran</h4>
             </div>
+
             <div class="card-body">
-                <h6>Id Transaksi {{ $data->code_transaksi }}</h6>
-                <h6>Nama: {{ $data->nama_customer }}</h6>
-                <h6>Total: {{ number_format($data->total_harga) }}</h6>
+                <div class="row">
+
+                    <!-- KOLOM KIRI -->
+                    <div class="col-md-6">
+                        <h5>Informasi Produk</h5>
+
+                        @foreach($detailProduk as $item)
+                            <div class="d-flex mb-3 border-bottom pb-2">
+
+                                <img src="{{ asset('storage/product/'.$item->product->foto) }}"
+                                    width="80"
+                                    height="80"
+                                    class="rounded me-3">
+
+                                <div>
+                                    <h6>{{ $item->product->nama_product }}</h6>
+                                    <p class="mb-1">
+                                        Qty : {{ $item->qty }}
+                                    </p>
+                                    <p class="mb-1">
+                                        Harga :
+                                        Rp {{ number_format($item->price) }}
+                                    </p>
+                                </div>
+
+                            </div>
+                        @endforeach
+
+                        <div class="border rounded p-3 bg-light">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Jumlah Barang</span>
+                                <span>{{ $detailProduk->count() }} Produk</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Total Qty</span>
+                                <span>{{ $detailProduk->sum('qty') }}</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Ongkir</span>
+                                <span>Rp {{ number_format($data->ongkir) }}</span>
+                            </div>
+
+                            <hr>
+
+                            <div class="d-flex justify-content-between">
+                                <strong>Total Bayar</strong>
+                                <strong>
+                                    Rp {{ number_format($data->total_harga) }}
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KOLOM KANAN -->
+                    <div class="col-md-6">
+                        <h5>Informasi Transaksi</h5>
+
+                        <p>
+                            <strong>ID Transaksi :</strong><br>
+                            {{ $data->code_transaksi }}
+                        </p>
+
+                        <p>
+                            <strong>Nama :</strong><br>
+                            {{ $data->nama_customer }}
+                        </p>
+
+                        <p>
+                            <strong>Alamat :</strong><br>
+                            {{ $data->alamat }}, {{ $data->kecamatan }}, {{ $data->kota }}, {{ $data->provinsi }}
+                        </p>
+
+                        <p>
+                            <strong>Ekspedisi :</strong><br>
+                            {{ strtoupper($data->ekspedisi) }}
+                        </p>
+                    </div>
+
+                </div>
             </div>
 
             <div class="p-2">

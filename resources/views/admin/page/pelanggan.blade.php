@@ -11,10 +11,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Nama Pengguna</th>
                         <th>Email</th>
-                        <th>No Tlp</th>
-                        <th>Alamat</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,8 +21,6 @@
                         <td>{{ $data->firstItem() + $key }}</td>
                         <td>{{ $row->name }}</td>
                         <td>{{ $row->email }}</td>
-                        <td>{{ $row->tlp }}</td>
-                        <td>{{ $row->alamat }}</td>
                     </tr>
                     @endforeach
                 </tbody>

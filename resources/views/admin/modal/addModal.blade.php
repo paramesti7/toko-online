@@ -27,9 +27,9 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="nameProduct" class="col-sm-5 col-form-label">Nama Product</label>
+                        <label for="nameProduct" class="col-sm-5 col-form-label">Nama Produk</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="nameProduct" name="nama">
+                            <input type="text" class="form-control" id="nameProduct" name="nama" autocomplete="off" autofocus>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -38,44 +38,20 @@
                             <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
                         </div>
                     </div>
-                    {{-- sunah start --}}
                     <div class="mb-3 row">
-                        <label for="type" class="col-sm-5 col-form-label">Type Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="type" name="type">
-                                <option value="">Pilih Type</option>
-                                <option value="Oleh-Oleh">Oleh-Oleh</option>
-                                {{-- <option value="rengginang">Rengginang</option>
-                                <option value="abon">Abon</option> --}}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="katergori" class="col-sm-5 col-form-label">Katergori Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="katergori" name="kategori">
-                                <option value="">Pilih katergori</option>
-                                <option value="Makanan">Makanan</option>
-                                <option value="Minuman">Minuman</option>
-                                {{-- <option value="dessert">Dessert</option> --}}
-                            </select>
-                        </div>
-                    </div>
-                    {{-- sunah end --}}
-                    <div class="mb-3 row">
-                        <label for="harga" class="col-sm-5 col-form-label">Harga Product</label>
+                        <label for="harga" class="col-sm-5 col-form-label">Harga Produk</label>
                         <div class="col-sm-7">
                             <input type="number" class="form-control" id="harga" name="harga">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="quantity" class="col-sm-5 col-form-label">Qty Product</label>
+                        <label for="quantity" class="col-sm-5 col-form-label">Qty Produk</label>
                         <div class="col-sm-7">
                             <input type="number" class="form-control" id="quantity" name="quantity">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="foto" class="col-sm-5 col-form-label">Foto Product</label>
+                        <label for="foto" class="col-sm-5 col-form-label">Foto Produk</label>
                         <div class="col-sm-7">
                             <img class="mb-2 preview" style="width: 100px">
                             <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="inputFoto" name="foto" onchange="previewImg()">

@@ -13,6 +13,7 @@
                             <th>No</th>
                             <th>Id Transaksi</th>
                             <th>Nama Penerima</th>
+                            <th>Alamat</th>
                             <th>Total Transaksi</th>
                             <th>Status</th>
                             <th>#</th>
@@ -24,6 +25,11 @@
                                 <td>{{++$x}}</td>
                                 <td>{{$item->code_transaksi}}</td>
                                 <td>{{$item->nama_customer}}</td>
+                                <td>{{$item->alamat}}, 
+                                    {{$item->kecamatan}},
+                                    {{$item->kota}},
+                                    {{$item->provinsi}}
+                                </td>
                                 <td>{{$item->total_harga}}</td>
                                 <td>
                                     @if ($item->status === 'Unpaid')
@@ -34,10 +40,13 @@
                                 </td>
                                 <td>
                                     @if ($item->status === 'Unpaid')
-                                        <a href="{{ route('keranjangBayar', ['id' => $item->id]) }}"
-                                        class="btn btn-success">Bayar</a>
+                                        <a href="{{ route('keranjangBayar', ['id' => $item->id]) }}" class="btn btn-success">
+                                            Bayar
+                                        </a>
                                     @else
-                                        <span class="text-muted">Selesai</span>
+                                        <a href="{{ route('invoice', ['id' => $item->id]) }}" class="btn btn-info">
+                                            <i class="far fa-list-alt"></i>
+                                        </a>
                                     @endif
                                 </td>
                             </tr>

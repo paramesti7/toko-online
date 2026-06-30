@@ -8,7 +8,7 @@
             margin: 0;
         }
     </style>
-    <h3 class="mt-5 mb-5">Keranjang Belanja</h3>
+    <h3 class="container mt-5 mb-5">Keranjang Belanja</h3>
 
     @if ($data->count() > 0)
 
@@ -20,7 +20,7 @@
         @endphp
 
         @foreach ($data as $x)
-        <div class="card mb-3">
+        <div class="container card mb-3">
             <div class="card-body d-flex gap-4">
 
                 @if ($x->product)
@@ -77,23 +77,26 @@
             </div>
         @endforeach
 
-        <div class="card mt-4">
-            <div class="card-body d-flex justify-content-between">
-                <h5 class="fw-bold">Total Belanja</h5>
-                <span class="fw-bold text-success" id="grand-total" style="font-size: 22px">
-                    Rp 0
-                </span>
+        <div class="container card mt-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 class="fw-bold">Subtotal</h5>
+                    <span class="fw-bold text-success" id="grand-total" style="font-size: 22px">
+                        Rp 0
+                    </span>
+                </div>
+
+                {{-- TOMBOL CHECKOUT SATU KALI --}}
+                <button type="submit" class="btn btn-success w-100 mt-3">
+                    <i class="fa fa-shopping-cart"></i>
+                    Checkout
+                </button>
             </div>
         </div>
 
 
-        {{-- TOMBOL CHECKOUT SATU KALI --}}
-        <button type="submit" class="btn btn-success w-100 mt-3">
-            <i class="fa fa-shopping-cart"></i>
-            Checkout
-        </button>
 
-        </form>
+    </form>
     @endif
 
     <script>

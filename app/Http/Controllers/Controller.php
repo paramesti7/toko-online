@@ -320,9 +320,10 @@ class Controller extends BaseController
         $dbTransaksi->alamat            = $data['alamatPenerima'];
         $dbTransaksi->no_tlp            = $data['tlp'];
         $dbTransaksi->ekspedisi         = $data['ekspedisi'];
-        $dbTransaksi->provinsi          = $data['province_id'];
-        $dbTransaksi->kota              = $data['city_id'];
-        $dbTransaksi->kecamatan         = $data['district_id'];
+        $dbTransaksi->provinsi          = $data['province_name'];
+        $dbTransaksi->kota              = $data['city_name'];
+        $dbTransaksi->kecamatan         = $data['district_name'];
+        $dbTransaksi->ongkir            = $data['ongkir'];
         
         $dbTransaksi->save();
 

@@ -132,6 +132,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::GET('/admin/editModal/{id}', [ProductController::class, 'show'])->name('editModal');
     Route::PUT('/admin/updateData/{id}', [ProductController::class, 'update'])->name('updateData');
     Route::DELETE('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
+    Route::GET('/admin/export-produk', [ProductController::class, 'exportPdf'])->name('export.produk');
 
     /*
     |--------------------------------------------------------------------------
@@ -141,5 +142,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::GET('/admin/transaksi', [TransaksiAdminController::class, 'index'])->name('transaksi.admin');
 
-    Route::GET('/admin/export-pdf', [TransaksiAdminController::class, 'exportPdf'])->name('export.pdf');
+    Route::GET('/admin/export-penjualan', [TransaksiAdminController::class, 'exportPdf'])->name('export.pdf');
+
+    Route::get('/admin/invoice/{id}', [TransaksiAdminController::class, 'invoice'])->name('admin.invoice');
 });

@@ -13,11 +13,12 @@
 
     <form action="{{ route('checkoutBayar') }}" method="POST" id="formCheckout">
         @csrf
-        <div class="row mt-3">
-            <div class="col-sm-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Masukan Alamat Tujuan</h3>
+        <div class="container py-4">
+            <div class="row justify-content-center g-4">
+
+                <div class="card col-lg-8 col-md-6">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4">Masukan Alamat Tujuan</h3>
                         <div class="row mb-3">
                             <label for="nama_penerima" class="col-form-label col-sm-3">Nama Penerima</label>
                             <div class="col-sm-9">
@@ -57,6 +58,10 @@
                                 </select>
                             </div>
                         </div>
+
+                        <input type="hidden" name="province_name" id="province_name">
+                        <input type="hidden" name="city_name" id="city_name">
+                        <input type="hidden" name="district_name" id="district_name">
 
                         <div class="row mb-3">
                             <label for="alamat_penerima" class="col-form-label col-sm-3">Alamat Tujuan</label>
@@ -112,59 +117,60 @@
                     </div>
                 </div>
 
-            </div>
 
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-header text-center p-4">
-                        <h3>Total Belanja</h3>
-                    </div>
-                    <div class="card-body pembayaran">
-                        <h3 class="mb-3">{{ $codeTransaksi }}</h3>
-                        <input type="hidden" name="code" value="{{ $codeTransaksi }}">
-                        <div class="row mb-3">
-                            <label for="totalBelanja" class="col-form-label col-sm-6">Total Belanja</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control totalBelanja" id="totalBelanja" name="totalBelanja" value="{{ $detailBelanja }}" readonly>
-                            </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="card">
+                        <div class="card-header text-center p-4">
+                            <h3>Total Belanja</h3>
                         </div>
-                        
-                        <div class="row mb-3">
-                            <label for="ongkir" class="col-form-label col-sm-6">Ongkir</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control ongkir" id="ongkir" name="ongkir" value="0" readonly>
+                        <div class="card-body pembayaran">
+                            <h3 class="mb-3">{{ $codeTransaksi }}</h3>
+                            <input type="hidden" name="code" value="{{ $codeTransaksi }}">
+                            <div class="row mb-3">
+                                <label for="totalBelanja" class="col-form-label col-sm-6">Subtotal</label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control totalBelanja" id="totalBelanja" name="totalBelanja" value="{{ $detailBelanja }}" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row mb-3">
-                            <label for="dibayarkan" class="col-form-label col-sm-6">Total</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control dibayarkan" id="dibayarkan" name="dibayarkan" value="0" readonly>
+                            
+                            <div class="row mb-3">
+                                <label for="ongkir" class="col-form-label col-sm-6">Ongkir</label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control ongkir" id="ongkir" name="ongkir" value="0" readonly>
+                                </div>
                             </div>
-                        </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <label for="dibayarkan" class="col-form-label col-sm-6">Total</label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control dibayarkan" id="dibayarkan" name="dibayarkan" value="0" readonly>
+                                </div>
+                            </div>
 
-                        <div class="row mb-3">
-                            <label for="dibayarkan" class="col-form-label col-sm-6">Jumlah Barang</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control dibayarkan" id="dibayarkan"
-                                    name="jumlahBarang" value="{{ $jumlahbarang }}" readonly>
+                            <div class="row mb-3">
+                                <label for="dibayarkan" class="col-form-label col-sm-6">Jumlah Barang</label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control dibayarkan" id="dibayarkan"
+                                        name="jumlahBarang" value="{{ $jumlahbarang }}" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="dibayarkan" class="col-form-label col-sm-6">Total Quantity</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control dibayarkan" id="dibayarkan" name="totalQty"
-                                    value="{{ $qtyOrder }}" readonly>
+                            <div class="row mb-3">
+                                <label for="dibayarkan" class="col-form-label col-sm-6">Total Quantity</label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control dibayarkan" id="dibayarkan" name="totalQty"
+                                        value="{{ $qtyOrder }}" readonly>
+                                </div>
                             </div>
+                            
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fa-regular fa-money-bill-1"></i>
+                                Bayar
+                            </button>
                         </div>
-                        
-                        <button type="submit" class="btn btn-success w-100">
-                            <i class="fa-regular fa-money-bill-1"></i>
-                            Bayar
-                        </button>
                     </div>
                 </div>
-            </div>
+
+            </div>    
         </div>
     </form>
 
@@ -225,6 +231,18 @@
                 } else {
                     $('select[name="district_id"]').append(`<option value="">-- Pilih Kecamatan --</option>`);
                 }
+            });
+
+            $('select[name="province_id"]').change(function () {
+                $('#province_name').val($(this).find('option:selected').text());
+            });
+
+            $('select[name="city_id"]').change(function () {
+                $('#city_name').val($(this).find('option:selected').text());
+            });
+
+            $('select[name="district_id"]').change(function () {
+                $('#district_name').val($(this).find('option:selected').text());
             });
 
             // ajax check ongkir
