@@ -74,16 +74,17 @@ class UserController extends Controller
     public function show($id)
     {
         $data = User::findOrFail($id);
-        // $hasValue = Hash::make($data->password);
+        
         return view(
             'admin.modal.editUser',
             [
                 'title' => 'Edit data User',
                 'data'  => $data,
-                // 'pass'  => (string) $hasValue,
+                
             ]
         )->render();
     }
+
     public function update(UserRequest $request, $id)
     {
         $data = User::findOrFail($id);
@@ -144,8 +145,6 @@ class UserController extends Controller
         $data->is_mamber    = 1;
         $data->is_admin     = 0;
 
-        // dd($request);die;
-
         if ($request->hasFile('foto')) {
             $photo = $request->file('foto');
             $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
@@ -165,12 +164,16 @@ class UserController extends Controller
         $request->validate([
             'email'    => 'required|email',
             'password' => 'required'
+        ], [
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'password.required' => 'Password harus diisi.',
         ]);
 
         $user = User::where('email', $request->email)->where('is_admin', 0)->first();
 
         if (!$user) {
-            Alert::toast('Akun pelanggan tidak ditemukan', 'error');
+            Alert::toast('Email dan Password Salah', 'error');
             return back()->withInput();
         }
 
@@ -185,21 +188,6 @@ class UserController extends Controller
             'password'  => $request->password,
         ];
 
-        // Ambil user berdasarkan email
-        // $user = User::where('email', $request->email)->first();
-
-        // Jika email tidak ditemukan
-        if (!$user) {
-            Alert::toast('Email tidak terdaftar', 'error');
-            return back()->withInput();
-        }
-
-        // Jika akun tidak aktif
-        if ($user->is_active == 0) {
-            Alert::toast('Akun belum aktif', 'error');
-            return back()->withInput();
-        }
-
         // PROSES LOGIN
         if (Auth::guard('web')->attempt($dataLogin)) {
             $request->session()->regenerate();
@@ -212,24 +200,12 @@ class UserController extends Controller
         
 
         // Jika password salah
-        Alert::toast('Email atau Password salah', 'error');
-        return back()->withInput();
+        return back()
+            ->withErrors([
+                'login' => 'Email atau password Anda salah.'
+            ])
+            ->withInput();
 
-        // $user = new User;
-        // $proses = $user::where('email', $request->email)->first();
-
-        // if ($proses->is_active === 0) {
-        //     Alert::toast('Kamu belum register', 'error');
-        //     return back();
-        // }
-        // if (Auth::attempt($dataLogin)) {
-        //     Alert::toast('Kamu berhasil login', 'success');
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('/');
-        // } else {
-        //     Alert::toast('Email dan Password salah', 'error');
-        //     return back();
-        // }
     }
 
     public function logout()
@@ -237,7 +213,7 @@ class UserController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        Alert::toast('Kamu berhasil Logout', 'success');
+        Alert::toast('Anda berhasil Logout', 'success');
         return redirect('/');
     }
 }

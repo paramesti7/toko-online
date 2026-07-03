@@ -28,7 +28,7 @@
                                         Qty : {{ $item->qty }}
                                     </p>
                                     <p class="mb-1">
-                                        Harga :
+                                        Subtotal :
                                         Rp {{ number_format($item->price) }}
                                     </p>
                                 </div>
@@ -39,7 +39,7 @@
                         <div class="border rounded p-3 bg-light">
                             <div class="d-flex justify-content-between mb-2">
                                 <span>Jumlah Barang</span>
-                                <span>{{ $detailProduk->count() }} Produk</span>
+                                <span>{{ $detailProduk->count() }}</span>
                             </div>
 
                             <div class="d-flex justify-content-between mb-2">

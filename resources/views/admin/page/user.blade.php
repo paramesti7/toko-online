@@ -39,7 +39,7 @@
                             <td>{{ $x->name }}</td>
                             {{-- sunah --}}
                             <td>
-                                <span class='badge text-bg-{{ $x->role === 1 ? 'info' :'success'}}'>{{ $x->role === 1 ? 'Admin' :'User'}}</span>
+                                <span class='badge text-bg-{{ $x->role === 1 ? 'info' :'success'}}'>{{ $x->role === 1 ? 'Admin' :'Manager'}}</span>
                             <td>
                                 <span class='badge text-bg-{{ $x->is_active === 1 ? 'success' :'danger'}}'>{{ $x->is_active === 1 ? 'Active' :'Non Active'}}</span></td>
                             <td>

@@ -22,10 +22,6 @@ class User extends Authenticatable
         'email',
         'password',
         'foto',
-        'alamat',
-        'tlp',
-        // sunah
-        'tglLahir',
         'is_active',
         'is_admin',
         'is_mamber',

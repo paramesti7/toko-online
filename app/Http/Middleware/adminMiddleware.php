@@ -22,7 +22,7 @@ class adminMiddleware
 
             if ($request->ajax()) {
                 return response()->json([
-                    'message' => 'Kamu bukan admin'
+                    'message' => 'Anda bukan admin'
                 ], 403);
             }
 

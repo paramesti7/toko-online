@@ -50,6 +50,7 @@
                             <input type="number" class="form-control" id="quantity" name="quantity">
                         </div>
                     </div>
+                    
                     <div class="mb-3 row">
                         <label for="foto" class="col-sm-5 col-form-label">Foto Produk</label>
                         <div class="col-sm-7">

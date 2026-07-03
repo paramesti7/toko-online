@@ -25,9 +25,6 @@ class UserRequestAdmin extends FormRequest
             'nama'      => 'required|string|max:255',
             'email'     => 'required|email|unique:users,email',
             'password'  => 'required|min:3',
-            'alamat'    => 'required',
-            'tlp'       => 'required',
-            'tglLahir'  => 'required|date',
             'role'      => 'required',
             'foto'      => 'nullable|image|mimes:jpg,png,jpeg',
         ];

@@ -21,12 +21,20 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'nama'          => 'required|string|max:255',
-            'email'         => 'required|email',
-            'password'      => 'required|min:3',
-            // 'role'          => 'required',
-            'foto'      => 'nullable|image|mimes:jpg,png,jpeg'
+        $rules = [
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email',
+            'foto' => 'nullable|image|mimes:jpg,png,jpeg',
         ];
+
+        if ($this->isMethod('post')) {
+            // Tambah user
+            $rules['password'] = 'required|min:3';
+        } else {
+            // Edit user
+            $rules['password'] = 'nullable|min:3';
+        }
+
+        return $rules;
     }
 }

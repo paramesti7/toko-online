@@ -28,14 +28,15 @@
 
                     <div class="desc w-100">
                         <p class="fs-4 fw-bold">{{ $x->product->nama_product }}</p>
-                        <p class="m-0">Stock: {{ $x->product->quantity }}</p>
+                        {{-- <p class="m-0">Berat : {{ number_format ($x->product->weight )}} gram</p> --}}
+                        <p class="m-0">Stock : {{ $x->product->quantity }}</p>
 
                         {{-- ID BARANG --}}
                         <input type="hidden" name="idBarang[]" value="{{ $x->product->id }}">
 
                         {{-- HARGA --}}
                         <p class="fs-5 mt-2">
-                            Harga:
+                            Harga :
                             <span>
                                 Rp {{ number_format($x->product->harga,0,',','.') }}
                             </span>
@@ -53,9 +54,9 @@
                             </div>
                         </div>
 
-                        {{-- TOTAL --}}
+                        {{-- SUBTOTAL --}}
                         <p class="fs-5 mt-2">
-                            Total:
+                            Subtotal :
                             <span class="fw-bold item-total" data-total="{{ $x->product->harga * $x->qty }}">
                                 Rp {{ number_format($x->product->harga * $x->qty, 0, ',', '.') }}
                             </span>

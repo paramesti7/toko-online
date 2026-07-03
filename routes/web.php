@@ -100,7 +100,8 @@ if (env('APP_DEBUG')) {
 Route::middleware('auth:admin')->group(function () {
 
     Route::get('/admin/dashboard', [Controller::class, 'admin'])->name('admin.dashboard');
-    Route::post('/admin/logout', [Controller::class, 'logout'])->name('admin.logout');
+    Route::post('/admin/logout', [Controller::class, 'logout'])
+    ->name('admin.logout');
     Route::get('/admin/product', [ProductController::class, 'index'])->name('product');
     Route::get('/admin/report', [Controller::class, 'report'])->name('report');
     Route::get('/admin/addModal', [ProductController::class, 'addModal'])->name('addModal');
@@ -116,7 +117,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::GET('/admin/user_management/addModalUser', [UserController::class, 'addModalUser'])->name('addModalUser');
     Route::POST('/admin/user_management/addData', [UserController::class, 'store'])->name('addDataUser');
     Route::get('/admin/user_management/editUser/{id}', [UserController::class, 'show'])->name('showDataUser');
-    Route::PUT('/admin/user_management/updateDataUser/{id}', [UserController::class, 'update'])->name('updateDataUSer');
+    Route::PUT('/admin/user_management/updateDataUser/{id}', [UserController::class, 'update'])->name('updateDataUser');
     Route::DELETE('/admin/user_management/deleteUSer/{id}', [UserController::class, 'destroy'])->name('destroyDataUser');
     
     Route::get('/admin/pelanggan', [UserController::class, 'pelanggan'])

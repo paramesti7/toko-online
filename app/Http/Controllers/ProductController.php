@@ -102,14 +102,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    // public function edit(Product $product)
-    // {
-    //     //
-    // }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateProductRequest $request, $id)
@@ -131,6 +123,7 @@ class ProductController extends Controller
             'deskripsi'      => $request->deskripsi,
             'harga'          => $request->harga,
             'quantity'       => $request->quantity,
+            // 'weight'         => $request->weight,
             'is_active'      => 1,
             'foto'           => $filename,
         ];
@@ -145,14 +138,21 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = product::findOrFail($id);
-        $product->delete();
+        try {
+            $product = Product::findOrFail($id);
 
-        $json = [
-            'success' => "Data berhasil dihapus"
-        ];
+            $product->delete();
 
-        echo json_encode($json);
+            return response()->json([
+                'success' => 'Data berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile(),
+            ], 500);
+        }
     }
 
 }

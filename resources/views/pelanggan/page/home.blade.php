@@ -84,7 +84,8 @@
                                 </div>
                             </div>
 
-                            <p class="m-0 text-justify" style="font-size: 16px">Stock: {{$b->quantity}}</p>
+                            <p class="m-0 text-justify" style="font-size: 14px">Berat : {{number_format ($p->weight)}} gram</p>
+                            <p class="m-0 text-justify" style="font-size: 14px">Stock: {{$b->quantity}}</p>
                         </div>
                         <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                             <div class="d-flex flex-column gap-1">
@@ -148,7 +149,8 @@
                                     </div>
                                 </div>
     
-                                <p class="m-0 text-justify" style="font-size: 16px">Stock: {{$p->quantity}}</p>
+                                {{-- <p class="m-0 text-justify" style="font-size: 14px">Berat : {{number_format ($p->weight)}} gram</p> --}}
+                                <p class="m-0 text-justify" style="font-size: 14px">Stock : {{$p->quantity}}</p>
                             </div>
                             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                                 <div class="d-flex flex-column gap-1">

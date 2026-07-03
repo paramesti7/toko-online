@@ -49,15 +49,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- AUTO OPEN MODAL LOGIN --}}
-    @if (request()->has('login'))
+    @if ($errors->any())
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var modalElement = document.getElementById('exampleModal');
-            if (modalElement) {
-                var myModal = new bootstrap.Modal(modalElement);
-                myModal.show();
-            }
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+        var modalElement = document.getElementById('exampleModal');
+
+        if (modalElement) {
+            var myModal = new bootstrap.Modal(modalElement);
+            myModal.show();
+        }
+    });
     </script>
     @endif
 </body>

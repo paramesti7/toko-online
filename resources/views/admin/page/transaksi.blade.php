@@ -2,15 +2,6 @@
 
 @section('content')
     <div class="card rounded-full p-2">
-        {{-- <div class="card-header bg-transparent d-flex justify-content-between"> --}}
-            {{-- <a href="/admin/export-pdf" class="btn btn-danger">Export PDF</a> --}}
-            {{-- <button class="btn btn-danger" id="addData">
-                <i class="fa fa-plus">
-                    <span>View PDF</span>
-                </i>
-            </button> --}}
-            {{-- <input type="text" wire:model="search" class="form-control w-25" placeholder="search..."> --}}
-        {{-- </div> --}}
         
         <div class="card-body">
             <table class="table table-responsive table-striped">

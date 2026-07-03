@@ -131,9 +131,13 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    var url = "{{ route('deleteData', ['id' => ':id']) }}".replace(':id', id);
+
+                    console.log(url);
+
                     $.ajax({
                         type: "DELETE",
-                        url: "{{ route('deleteData', ['id' => ':id']) }}".replace(':id', id),
+                        url: url,
                         dataType: "json",
                         success: function(response) {
                             if (response.success) {
@@ -143,12 +147,14 @@
                                 });
                             }
                         },
-                        error: function(xhr, status, error) {
-                            // Tampilkan notifikasi error jika terjadi kesalahan
+                        error: function(xhr) {
+                            console.log("Status:", xhr.status);
+                            console.log("Response:", xhr.responseText);
+
                             Swal.fire({
-                                title: 'Error',
-                                text: 'Terjadi kesalahan saat menghapus data',
-                                icon: 'error'
+                                icon: "error",
+                                title: "Error",
+                                html: "<pre style='text-align:left'>" + xhr.responseText + "</pre>"
                             });
                         }
                     });

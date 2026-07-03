@@ -295,6 +295,7 @@ class Controller extends BaseController
     
     public function prosesPembayaran(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'namaPenerima'     => ['required', 'regex:/^[a-zA-Z\s]+$/'],
             'alamatPenerima'   => ['required'],
@@ -401,6 +402,7 @@ class Controller extends BaseController
             'title' => 'Admin Report',
         ]);
     }
+    
     public function login()
     {
         return view('admin.page.login',[
@@ -411,13 +413,6 @@ class Controller extends BaseController
 
     public function loginProses(Request $request)
     {
-        // Session::flash('error', $request->email);
-
-        // $dataLogin = [
-        //     'email'     => $request->email,
-        //     'password'  => $request->password,
-        // ];
-
         // =============================
         // 1. VALIDASI FORM
         // =============================
@@ -430,9 +425,6 @@ class Controller extends BaseController
             'password.required' => 'Password harus diisi',
             'password.min' => 'Password minimal 3 karakter',
         ]);
-
-        // $user = new User;
-        // $proses = $user::where('email',$request->email)->first();
 
         // =============================
         // 2. CEK USER TERDAFTAR
@@ -448,7 +440,7 @@ class Controller extends BaseController
         // 3. CEK ROLE ADMIN
         // =============================
         if ($user->is_admin != 1) {
-            Alert::toast('Kamu bukan admin', 'error');
+            Alert::toast('Anda bukan admin', 'error');
             return back()->withInput();
         }
 
@@ -458,13 +450,14 @@ class Controller extends BaseController
 
         if (Auth::guard('admin')->attempt([
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => $request->password
         ])) {
 
             // WAJIB: regenerate session (ANTI 419)
             $request->session()->regenerate();
 
-            Alert::toast('Kamu berhasil login', 'success');
+            Alert::toast('Login berhasil', 'success');
+
             return redirect()->route('admin.dashboard');
         }
 
@@ -473,20 +466,6 @@ class Controller extends BaseController
         // =============================
         Alert::toast('Email dan Password salah', 'error');
         return back()->withInput();
-        
-        // if(optional($proses)->is_admin === 0){
-        //     Session::flash('error','Kamu bukan admin');
-        //     return back();
-        // }else{
-        //     if (Auth::attempt($dataLogin)) {
-        //         Alert::toast('Kamu berhasil login', 'success');
-        //         $request->session()->regenerate();
-        //         return redirect()->intended('/admin/dashboard');
-        //     }else {
-        //         Alert::toast('Email dan Password salah', 'error');
-        //         return back();
-        //     }
-        // }
     }
 
     public function logout()
@@ -496,7 +475,7 @@ class Controller extends BaseController
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         
-        Alert::toast('Kamu berhasil logout', 'success');
+        Alert::toast('Anda berhasil logout', 'success');
         return redirect('/admin');
     }
 }

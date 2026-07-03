@@ -40,7 +40,7 @@
                         <div class="border rounded p-3 bg-light">
                             <div class="d-flex justify-content-between">
                                 <span>Jumlah Barang</span>
-                                <span>{{ $detailProduk->count() }} Produk</span>
+                                <span>{{ $detailProduk->count() }}</span>
                             </div>
 
                             <div class="d-flex justify-content-between">

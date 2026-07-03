@@ -7,18 +7,37 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+                @if ($errors->has('login'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('login') }}
+                </div>
+                @endif
+                
                 <form action="{{ route('loginproses.pelanggan') }}" method="POST">
                     @csrf
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="email" name="email" value="" autocomplete="off" placeholder="Masukan Email Anda">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" autocomplete="off" placeholder="Masukan Email Anda">
+
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-5 row">
                         <label for="Password" class="col-sm-3 col-form-label">Password</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password Anda">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Masukan Password Anda">
+
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     

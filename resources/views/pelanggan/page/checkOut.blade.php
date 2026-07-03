@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="dibayarkan" class="col-form-label col-sm-6">Total Quantity</label>
+                                <label for="dibayarkan" class="col-form-label col-sm-6">Total Qty</label>
                                 <div class="col-sm-6">
                                     <input type="number" class="form-control dibayarkan" id="dibayarkan" name="totalQty"
                                         value="{{ $qtyOrder }}" readonly>
