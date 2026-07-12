@@ -19,7 +19,7 @@ class TransaksiController extends Controller
     public function index()
     {
         $best = Product::where('quantity_out','>=',5)->get();
-        $data = Product::paginate(15);
+        $data = Product::paginate(20);
         
         if (!Auth::check()) {
             $countKeranjang = 0;

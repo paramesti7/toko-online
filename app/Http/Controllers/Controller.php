@@ -31,9 +31,9 @@ class Controller extends BaseController
             $category = $request->input('kategory');
             $type = $request->input('type');
             $data = product::where('kategory', $category)
-                ->orWhere('type', $type)->paginate(5);
+                ->orWhere('type', $type)->paginate(20);
         } else {
-            $data = product::paginate(5);
+            $data = product::paginate(20);
         }
         // Sunnah End
         if (!Auth::check()) {
