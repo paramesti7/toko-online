@@ -77,7 +77,7 @@
                                 </div>
                             </div>
 
-                            {{-- <p class="m-0 text-justify" style="font-size: 14px">Berat : {{number_format ($p->weight)}} gram</p> --}}
+                            <p class="m-0 text-justify" style="font-size: 14px">Berat : {{number_format ($p->weight)}} gram</p>
                             <p class="m-0 text-justify" style="font-size: 14px">Stock: {{$p->quantity}}</p>
                         </div>
                         <div class="card-footer d-flex flex-row justify-content-between align-items-center">

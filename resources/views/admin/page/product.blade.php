@@ -20,6 +20,7 @@
                         <th>SKU</th>
                         <th>Nama Produk</th>
                         <th>Harga</th>
+                        <th>Berat</th>
                         <th>Stock</th>
                         <th>#</th>
                     </tr>
@@ -40,6 +41,7 @@
                                 <td>{{ $x->sku }}</td>
                                 <td>{{ $x->nama_product }}</td>
                                 <td>{{ $x->harga }}</td>
+                                <td>{{ $x->weight }} gram</td>
                                 <td>{{ $x->quantity }}</td>
                                 <td>
                                     <div class="d-flex gap-2">

@@ -137,6 +137,15 @@ class Controller extends BaseController
         $jumlahBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->count('id_barang');
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->sum('qty');
 
+        $detail = modelDetailTransaksi::with('product')
+            ->where('id_transaksi', $codeTransaksi)
+            ->where('status', 0)
+            ->get();
+
+        $totalWeight = $detail->sum(function ($item) {
+            return ($item->product?->weight * $item->qty);
+        });
+
         return view('pelanggan.page.checkOut',[
             'title'         => 'Check Out',
             'count'         => $countKeranjang,
@@ -145,6 +154,7 @@ class Controller extends BaseController
             'qtyOrder'      => $qtyBarang,
             'codeTransaksi' => $codeTransaksi,
             'provinces'     => $provinces,
+            'totalWeight'   => $totalWeight,
         ]);
     }
 
@@ -216,7 +226,7 @@ class Controller extends BaseController
         ])->post('https://rajaongkir.komerce.id/api/v1/calculate/domestic-cost', [
                 'origin'      => 5317,
                 'destination' => $request->input('district_id'), // ID kecamatan tujuan
-                'weight'      => 1000, // Berat dalam gram
+                'weight'      => $request->input('weight'), // Berat dalam gram
                 'courier'     => $request->input('courier'), // Kode kurir (jne, tiki, pos)
         ]);
 

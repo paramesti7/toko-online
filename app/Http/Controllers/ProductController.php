@@ -68,6 +68,7 @@ class ProductController extends Controller
         $data->nama_product  = $request->nama;
         $data->deskripsi     = $request->deskripsi;
         $data->harga         = $request->harga;
+        $data->weight        = $request->weight;
         $data->quantity      = $request->quantity;
         $data->quantity_out  = 0;
         $data->is_active     = 1;
@@ -122,8 +123,8 @@ class ProductController extends Controller
             'nama_product'   => $request->nama,
             'deskripsi'      => $request->deskripsi,
             'harga'          => $request->harga,
+            'weight'         => $request->weight,
             'quantity'       => $request->quantity,
-            // 'weight'         => $request->weight,
             'is_active'      => 1,
             'foto'           => $filename,
         ];

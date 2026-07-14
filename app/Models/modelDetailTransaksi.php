@@ -24,7 +24,7 @@ class modelDetailTransaksi extends Model
         return $this->belongsTo(transaksi::class, 'id_transaksi',
         'id');
     }
-    public function Product()
+    public function product()
     {
         return $this->belongsTo(Product::class, 'id_barang',
         'id');

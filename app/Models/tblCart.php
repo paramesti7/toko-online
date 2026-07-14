@@ -20,6 +20,6 @@ class tblCart extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class, 'id', 'id_barang');
+        return $this->belongsTo(Product::class, 'id_barang', 'id');
     }
 }

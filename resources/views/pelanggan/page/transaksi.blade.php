@@ -28,8 +28,11 @@
 
                     <div class="desc w-100">
                         <p class="fs-4 fw-bold">{{ $x->product->nama_product }}</p>
-                        {{-- <p class="m-0">Berat : {{ number_format ($x->product->weight )}} gram</p> --}}
                         <p class="m-0">Stock : {{ $x->product->quantity }}</p>
+                        <p class="m-0">
+                            Berat :
+                            <span>{{ $x->product->weight }} gram</span>
+                        </p>
 
                         {{-- ID BARANG --}}
                         <input type="hidden" name="idBarang[]" value="{{ $x->product->id }}">

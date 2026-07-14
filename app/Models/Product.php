@@ -15,6 +15,7 @@ class Product extends Model
         'nama_product',
         'deskripsi',
         'harga',
+        'weight',
         'quantity',
         'quantity_out',
         'foto',

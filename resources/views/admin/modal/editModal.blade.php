@@ -34,6 +34,19 @@
                             <input type="number" class="form-control" id="harga" name="harga" value="{{$data->harga}}">
                         </div>
                     </div>
+
+                    <div class="mb-3 row">
+                        <label for="weight" class="col-sm-5 col-form-label">Berat Barang (gram)</label>
+                        <div class="col-sm-7">
+                            <input type="number"
+                                name="weight" id="weight"
+                                class="form-control"
+                                value="{{ $data->weight }}"
+                                min="1"
+                            required>
+                        </div>
+                    </div>
+
                     <div class="mb-3 row">
                         <label for="quantity" class="col-sm-5 col-form-label">Qty Produk</label>
                         <div class="col-sm-7">

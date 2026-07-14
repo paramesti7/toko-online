@@ -37,7 +37,19 @@
                         </div>
                         @endforeach
 
+                        @php
+                            $totalWeight = $detailProduk->sum(function ($item) {
+                                return ($item->product->weight * $item->qty);
+                            });
+                        @endphp
+
                         <div class="border rounded p-3 bg-light">
+
+                            <div class="d-flex justify-content-between">
+                                <span>Total Berat</span>
+                                <span>{{ number_format($totalWeight) }} gram</span>
+                            </div>
+                            
                             <div class="d-flex justify-content-between">
                                 <span>Jumlah Barang</span>
                                 <span>{{ $detailProduk->count() }}</span>

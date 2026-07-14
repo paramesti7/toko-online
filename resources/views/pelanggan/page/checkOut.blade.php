@@ -148,6 +148,13 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="weight" class="col-form-label col-sm-6">Berat Barang (gram)</label>
+                                <div class="col-sm-6">
+                                    <input type="number" name="weight" id="weight" class="form-control" value="{{ $totalWeight }}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="dibayarkan" class="col-form-label col-sm-6">Jumlah Barang</label>
                                 <div class="col-sm-6">
                                     <input type="number" class="form-control dibayarkan" id="dibayarkan"
@@ -280,10 +287,10 @@
                 let token        = $("meta[name='csrf-token']").attr("content");
                 let district_id  = $('select[name=district_id]').val();
                 let courier      = $('input[name=courier]:checked').val();
-                let weight       = 1000;
+                let weight       = $('#weight').val();
 
                 // Validasi form
-                if (!district_id || !courier) {
+                if (!district_id || !courier || !weight) {
                     return;
                 }
 
